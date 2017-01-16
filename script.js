@@ -24,8 +24,6 @@ btn.addEventListener('click', function () {
             let secondData = JSON.parse(secondRequest.responseText);
         //------------------------------------------  
             
-            
-
             // Here we have all functions that are doing calculations and writing in our Html
             function calculateLog() {
                 if (secondData.operation == "log") {
