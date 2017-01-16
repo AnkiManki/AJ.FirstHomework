@@ -9,7 +9,7 @@ btn.addEventListener('click', function () {
     firstRequest.send(null);
     firstRequest.onload = function () {
         let firstData = JSON.parse(firstRequest.responseText);
-    //------------------------------------------ 
+        //------------------------------------------ 
 
         // randomly select any Json file.
         let randomJson = firstData[Math.floor(Math.random() * firstData.length)];
@@ -22,40 +22,66 @@ btn.addEventListener('click', function () {
         secondRequest.send(null);
         secondRequest.onload = function () {
             let secondData = JSON.parse(secondRequest.responseText);
+        //------------------------------------------  
+            
+            
 
+            // Here we have all functions that are doing calculations and writing in our Html
+            function calculateLog() {
+                if (secondData.operation == "log") {
+                    let result = 0;
+                    for (let i = 0; i < secondData.data.length; i++) {
+                        result += Math.log(secondData.data[i]);
+                    }
+                    div.innerHTML = ("The operation" + " " + "&quot;" + secondData.operation + "&quot;" + " " + "applied to the array" + " " + secondData.data + " " + "gives a result of" + " " + result);
+                }
+            }
+            calculateLog();
+
+            function calculateSine() {
+                if (secondData.operation == "sine") {
+                    let result = 0;
+                    for (let i = 0; i < secondData.data.length; i++) {
+                        result += Math.sin(secondData.data[i]);
+                    }
+                    div.innerHTML = ("The operation" + " " + "&quot;" + secondData.operation + "&quot;" + " " + "applied to the array" + " " + secondData.data + " " + "gives a result of" + " " + result);
+                }
+            }
+            calculateSine();
+
+            function calculateCosine() {
+                if (secondData.operation == "cosine") {
+                    let result = 0;
+                    for (let i = 0; i < secondData.data.length; i++) {
+                        result += Math.cos(secondData.data[i]);
+                    }
+                    div.innerHTML = ("The operation" + " " + "&quot;" + secondData.operation + "&quot;" + " " + "applied to the array" + " " + secondData.data + " " + "gives a result of" + " " + result);
+                }
+            }
+            calculateCosine();
+
+            function calculateSquare() {
+                if (secondData.operation == "square") {
+                    let result = 0;
+                    for (let i = 0; i < secondData.data.length; i++) {
+                        result += Math.sqrt(secondData.data[i]);
+                    }
+                    div.innerHTML = ("The operation" + " " + "&quot;" + secondData.operation + "&quot;" + " " + "applied to the array" + " " + secondData.data + " " + "gives a result of" + " " + result);
+                }
+            }
+            calculateSquare();
+
+            function calculateCube() {
+                if (secondData.operation == "cube") {
+                    let result = 0;
+                    for (let i = 0; i < secondData.data.length; i++) {
+                        result += Math.pow(secondData.data[i]);
+                    }
+                    div.innerHTML = ("The operation" + " " + "&quot;" + secondData.operation + "&quot;" + " " + "applied to the array" + " " + secondData.data + " " + "gives a result of" + " " + result);
+                }
+            }
+            calculateCube();
+            //------------------------------------------   
         }
-        //------------------------------------------
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 });
