@@ -22,64 +22,38 @@ btn.addEventListener('click', function () {
         secondRequest.send(null);
         secondRequest.onload = function () {
             let secondData = JSON.parse(secondRequest.responseText);
-        //------------------------------------------  
+
+            let makeCalculations = function (array, operations) {
+                let result = [];
+                for (var i = 0; i < array.length; i++) {
+                    var item = array[i];
+                    result.push(operations(item));
+                }
+                return result;
+            }
+
+            let squared = makeCalculations(secondData.data, function (number) {
+                if (secondData.operation === 'square') {return number * number}});
+
+            let loged = makeCalculations(secondData.data, function (number) {
+                if (secondData.operation === 'log') {return Math.log(number)}});
+
+            let sined = makeCalculations(secondData.data, function (number) {
+                if (secondData.operation === 'sine') {return Math.sin(number)}});
+
+            let cosined = makeCalculations(secondData.data, function (number) {
+                if (secondData.operation === 'cosine') {return Math.cos(number)}});
+
+            let cubed = makeCalculations(secondData.data, function (number) {
+                if (secondData.operation === 'cube') {return Math.pow(number)}});
+
             
-            // Here we have all functions that are doing calculations and writing in our Html
-            function calculateLog() {
-                if (secondData.operation == "log") {
-                    let result = 0;
-                    for (let i = 0; i < secondData.data.length; i++) {
-                        result += Math.log(secondData.data[i]);
-                    }
-                    div.innerHTML = ("The operation" + " " + "&quot;" + secondData.operation + "&quot;" + " " + "applied to the array" + " " + secondData.data + " " + "gives a result of" + " " + result);
-                }
-            }
-            calculateLog();
-
-            function calculateSine() {
-                if (secondData.operation == "sine") {
-                    let result = 0;
-                    for (let i = 0; i < secondData.data.length; i++) {
-                        result += Math.sin(secondData.data[i]);
-                    }
-                    div.innerHTML = ("The operation" + " " + "&quot;" + secondData.operation + "&quot;" + " " + "applied to the array" + " " + secondData.data + " " + "gives a result of" + " " + result);
-                }
-            }
-            calculateSine();
-
-            function calculateCosine() {
-                if (secondData.operation == "cosine") {
-                    let result = 0;
-                    for (let i = 0; i < secondData.data.length; i++) {
-                        result += Math.cos(secondData.data[i]);
-                    }
-                    div.innerHTML = ("The operation" + " " + "&quot;" + secondData.operation + "&quot;" + " " + "applied to the array" + " " + secondData.data + " " + "gives a result of" + " " + result);
-                }
-            }
-            calculateCosine();
-
-            function calculateSquare() {
-                if (secondData.operation == "square") {
-                    let result = 0;
-                    for (let i = 0; i < secondData.data.length; i++) {
-                        result += Math.sqrt(secondData.data[i]);
-                    }
-                    div.innerHTML = ("The operation" + " " + "&quot;" + secondData.operation + "&quot;" + " " + "applied to the array" + " " + secondData.data + " " + "gives a result of" + " " + result);
-                }
-            }
-            calculateSquare();
-
-            function calculateCube() {
-                if (secondData.operation == "cube") {
-                    let result = 0;
-                    for (let i = 0; i < secondData.data.length; i++) {
-                        result += Math.pow(secondData.data[i]);
-                    }
-                    div.innerHTML = ("The operation" + " " + "&quot;" + secondData.operation + "&quot;" + " " + "applied to the array" + " " + secondData.data + " " + "gives a result of" + " " + result);
-                }
-            }
-            calculateCube();
-            //------------------------------------------   
-        }
+            console.log(squared.reduce((all, item) => all + item));
+            console.log(loged.reduce((all, item) => all + item));
+            console.log(sined.reduce((all, item) => all + item));
+            console.log(cosined.reduce((all, item) => all + item));
+            console.log(cubed.reduce((all, item) => all + item));
+        
+        };
     }
 });
